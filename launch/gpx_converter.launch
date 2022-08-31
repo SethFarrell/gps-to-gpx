@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+
+	<node name="gpx_converter" pkg="gps-to-gpx" type="bag_to_gpx.py" output="screen" />
+
+</launch>
