@@ -54,8 +54,11 @@ if __name__ == '__main__':
     rospy.init_node('gpx_converter')
 
     gpx_converter = GPX_Listener()
+    
+    # Get the argument for the topic to subscribe to
+    gps_topic = rospy.get_param("/gpx_converter/gps_topic")
 
-    rospy.Subscriber('/fix', NavSatFix, gpx_converter.gps_callback)
+    rospy.Subscriber(gps_topic, NavSatFix, gpx_converter.gps_callback)
 
     # Open a new .gpx file with name based on current date
     # Create a file using the current day as file name (would be better if this was retrieved from the first message timestamp

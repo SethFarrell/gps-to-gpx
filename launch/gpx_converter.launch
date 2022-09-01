@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <launch>
+	
+	<arg name="gps_topic" default="/fix"/>
 
-	<node name="gpx_converter" pkg="gps-to-gpx" type="bag_to_gpx.py" output="screen" />
+	<node name="gpx_converter" pkg="gps-to-gpx" type="bag_to_gpx.py" output="screen">
+		<param name="gps_topic" value="$(arg gps_topic)" type="str" />
+	</node>
 
 </launch>
