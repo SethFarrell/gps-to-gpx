@@ -1,4 +1,4 @@
-Package for reading in messages from gps /fix and outputing a file in gpx form.
+ROS Package which creates a node to read in messages from gps '/fix' topic and output a file in gpx form of the traversed path.
 
 # Instructions
 1. In your workspace /src directory clone this repo: `git clone https://github.com/SethFarrell/gps-to-gpx.git`
