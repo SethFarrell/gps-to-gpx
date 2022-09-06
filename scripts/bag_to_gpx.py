@@ -65,6 +65,10 @@ if __name__ == '__main__':
     current_time = datetime.now()
     file_name = current_time.strftime('%m-%d-%Y')
 
+    # If a file for the current day already exists, append the minutes and seconds to the file name
+    file_exists = os.path.isfile(file_name)
+    file_name = file_name + current_time.strftime('%H_%M_%S')
+
     # Inside callbacks, fill in trkpt segments as we get data
     # callbacks are called as long as rospy spins, this ends automatically when nodes shut down or maybe if our bag data ends? Might have to manually shutdown at that point 
     #with open("./" + file_name + '.gpx', 'w+') as f:
@@ -74,8 +78,10 @@ if __name__ == '__main__':
 
     __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
-
-    with open(os.path.join(__location__, file_name + '.gpx'), 'w+') as f:
+    # Opening with 'a' so that hopefully it writes to file and if power goes out data is still there.
+    # might need to try open(filename, 'a', 0) for buffer size 0
+    # will test
+    with open(os.path.join(__location__, file_name + '.gpx'), 'a') as f:
         gpx_converter.print_beginning(file_name)
         rospy.spin()
         gpx_converter.print_ending()
