@@ -67,7 +67,7 @@ if __name__ == '__main__':
 
     # If a file for the current day already exists, append the minutes and seconds to the file name
     file_exists = os.path.isfile(file_name)
-    file_name = file_name + current_time.strftime('%H_%M_%S')
+    file_name = file_name + current_time.strftime('_%H_%M_%S')
 
     # Inside callbacks, fill in trkpt segments as we get data
     # callbacks are called as long as rospy spins, this ends automatically when nodes shut down or maybe if our bag data ends? Might have to manually shutdown at that point 
