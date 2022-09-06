@@ -66,7 +66,8 @@ if __name__ == '__main__':
     file_name = current_time.strftime('%m-%d-%Y')
 
     # If a file for the current day already exists, append the minutes and seconds to the file name
-    file_exists = os.path.isfile(file_name)
+    #file_exists = os.path.isfile(file_name + '.gpx')
+    #if (file_exists):
     file_name = file_name + current_time.strftime('_%H_%M_%S')
 
     # Inside callbacks, fill in trkpt segments as we get data
@@ -81,7 +82,7 @@ if __name__ == '__main__':
     # Opening with 'a' so that hopefully it writes to file and if power goes out data is still there.
     # might need to try open(filename, 'a', 0) for buffer size 0
     # will test
-    with open(os.path.join(__location__, file_name + '.gpx'), 'a') as f:
+    with open(os.path.join(__location__, file_name + '.gpx'), 'a', 0) as f:
         gpx_converter.print_beginning(file_name)
         rospy.spin()
         gpx_converter.print_ending()
