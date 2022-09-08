@@ -27,9 +27,14 @@ class GPX_Listener:
         lon = self.gps_data.longitude
         ele = self.gps_data.altitude
 
+        if (lat != "nan" and lon != "nan" and ele != "nan"):
+            # Format each "trkpt" using data from the NavSatFix Message 
+            sentence = "\t<trkpt lat=\"{lat}\" lon=\"{lon}\"><ele>{ele}</ele><time>{time}</time></trkpt>\n".format(lat = lat, lon = lon, ele = ele, time = time)
+            f.write(sentence)
+
         # Format each "trkpt" using data from the NavSatFix Message 
-        sentence = "\t<trkpt lat=\"{lat}\" lon=\"{lon}\"><ele>{ele}</ele><time>{time}</time></trkpt>\n".format(lat = lat, lon = lon, ele = ele, time = time)
-        f.write(sentence)
+        # sentence = "\t<trkpt lat=\"{lat}\" lon=\"{lon}\"><ele>{ele}</ele><time>{time}</time></trkpt>\n".format(lat = lat, lon = lon, ele = ele, time = time)
+        # f.write(sentence)
 
     # Print the start of the gpx file (this only happens once per file)
     def print_beginning(self, date):
@@ -45,7 +50,7 @@ class GPX_Listener:
 
     # Print the ending of the gpx file (this only happens once per file)
     def print_ending(self):
-	f.write("</trkseg>\n\n")
+        f.write("</trkseg>\n\n")
         f.write("</trk>\n")
         f.write("</gpx>\n")
 
