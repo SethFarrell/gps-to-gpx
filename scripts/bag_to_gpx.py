@@ -87,7 +87,7 @@ if __name__ == '__main__':
     # Opening with 'a' so that hopefully it writes to file and if power goes out data is still there.
     # might need to try open(filename, 'a', 0) for buffer size 0
     # will test
-    with open(os.path.join(__location__, file_name + '.gpx'), 'a', 0) as f:
+    with open(os.path.join(__location__, file_name + '.gpx'), 'a') as f:
         gpx_converter.print_beginning(file_name)
         rospy.spin()
         gpx_converter.print_ending()
