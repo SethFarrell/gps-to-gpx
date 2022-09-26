@@ -27,7 +27,7 @@ class GPX_Listener:
         lon = self.gps_data.longitude
         ele = self.gps_data.altitude
 
-        if (lat != "nan" and lon != "nan" and ele != "nan"):
+        if (str(lat) != "nan" and str(lon) != "nan"):
             # Format each "trkpt" using data from the NavSatFix Message 
             sentence = "\t<trkpt lat=\"{lat}\" lon=\"{lon}\"><ele>{ele}</ele><time>{time}</time></trkpt>\n".format(lat = lat, lon = lon, ele = ele, time = time)
             f.write(sentence)
@@ -87,7 +87,7 @@ if __name__ == '__main__':
     # Opening with 'a' so that hopefully it writes to file and if power goes out data is still there.
     # might need to try open(filename, 'a', 0) for buffer size 0
     # will test
-    with open(os.path.join(__location__, file_name + '.gpx'), 'a') as f:
+    with open(os.path.join(__location__, file_name + '.gpx'), 'a', 0) as f:
         gpx_converter.print_beginning(file_name)
         rospy.spin()
         gpx_converter.print_ending()
